@@ -1,0 +1,10 @@
+#idea
+.idea
+*.iml
+*.ipr
+
+#maven
+**/target
+
+#mac
+.DS_Store
