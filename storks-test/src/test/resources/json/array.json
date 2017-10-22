@@ -1,0 +1,14 @@
+[
+  {
+    "color": "green",
+    "shape": "circle",
+    "area": 12
+  }   ,
+  {
+    "nested": {
+      "color": "green",
+      "shape": "circle",
+      "area": 12
+    }
+  }
+]

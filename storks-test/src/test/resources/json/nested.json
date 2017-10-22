@@ -1,0 +1,17 @@
+{
+  "name": "tom",
+  "age": 5,
+  "adult": false,
+  "parent": {
+    "name": "jerry",
+    "age": 45.4,
+    "adult": true,
+    "address": null,
+    "array": [
+      1,
+      3,
+      {
+      }
+    ]
+  }
+}
