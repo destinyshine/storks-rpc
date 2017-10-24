@@ -1,7 +1,7 @@
 package io.destinyshine.storks.registry.consul.client;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.registry.consul.ConsulResponse;
 import io.destinyshine.storks.registry.consul.ConsulService;
@@ -18,28 +18,28 @@ public interface ConsulClient {
      *
      * @param serviceId
      */
-    CompletableFuture<Void> checkPassService(String serviceId);
+    CompletionStage<Void> checkPassService(String serviceId);
 
     /**
      * 设置checkid为不可用状态。
      *
      * @param serviceId
      */
-    CompletableFuture<Void> checkFailService(String serviceId);
+    CompletionStage<Void> checkFailService(String serviceId);
 
     /**
      * 注册一个consul service
      *
      * @param service
      */
-    CompletableFuture<Void> registerService(ConsulService service);
+    CompletionStage<Void> registerService(ConsulService service);
 
     /**
      * 根据serviceid注销service
      *
      * @param serviceId
      */
-    CompletableFuture<Void> unregisterService(String serviceId);
+    CompletionStage<Void> unregisterService(String serviceId);
 
     /**
      * 获取最新的可用服务列表。
@@ -48,5 +48,5 @@ public interface ConsulClient {
      * @param lastConsulIndex
      * @return
      */
-    CompletableFuture<ConsulResponse<List<ConsulService>>> lookupHealthService(String serviceName, long lastConsulIndex);
+    CompletionStage<ConsulResponse<List<ConsulService>>> lookupHealthService(String serviceName, long lastConsulIndex);
 }

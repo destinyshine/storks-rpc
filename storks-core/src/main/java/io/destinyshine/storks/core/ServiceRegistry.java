@@ -1,7 +1,7 @@
 package io.destinyshine.storks.core;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.function.Consumer;
 
 import io.destinyshine.storks.core.consume.Subscription;
@@ -34,7 +34,7 @@ public interface ServiceRegistry extends AutoCloseable {
      * @param serviceKey
      * @return
      */
-    CompletableFuture<List<ServiceInstance>> discover(ServiceKey serviceKey);
+    CompletionStage<List<ServiceInstance>> discover(ServiceKey serviceKey);
 
     /**
      * watching long time unit cancel. may trigger many times.

@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,8 +34,8 @@ public class ThreadPoolServiceProcedureExecutor implements ServiceProcedureExecu
     }
 
     @Override
-    public CompletableFuture<ResponseMessage> execute(RequestMessage request,
-                                                      ServiceProvider<?> serviceProvider) {
+    public CompletionStage<ResponseMessage> execute(RequestMessage request,
+                                                    ServiceProvider<?> serviceProvider) {
         CompletableFuture<ResponseMessage> completableFuture = new CompletableFuture<ResponseMessage>();
         procedureExecutor.submit(() ->
             doExecuteInternal(request, serviceProvider, completableFuture)

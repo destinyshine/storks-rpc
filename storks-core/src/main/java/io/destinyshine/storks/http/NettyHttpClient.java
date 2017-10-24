@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.utils.MapUtils;
 import io.netty.bootstrap.Bootstrap;
@@ -54,19 +55,19 @@ public class NettyHttpClient {
         this.bootstrap = bootstrap;
     }
 
-    public CompletableFuture<FullHttpResponse> get(String url) {
+    public CompletionStage<FullHttpResponse> get(String url) {
         return get(url, Collections.EMPTY_MAP);
     }
 
-    public CompletableFuture<FullHttpResponse> get(String url, Map<String, List<String>> headers) {
+    public CompletionStage<FullHttpResponse> get(String url, Map<String, List<String>> headers) {
         return doRequest(HttpMethod.GET, url, Unpooled.EMPTY_BUFFER, headers);
     }
 
-    public CompletableFuture<FullHttpResponse> put(String url, ByteBuf body) {
+    public CompletionStage<FullHttpResponse> put(String url, ByteBuf body) {
         return doRequest(HttpMethod.PUT, url, body, Collections.EMPTY_MAP);
     }
 
-    protected CompletableFuture<FullHttpResponse> doRequest(HttpMethod method, String url, ByteBuf body,
+    protected CompletionStage<FullHttpResponse> doRequest(HttpMethod method, String url, ByteBuf body,
                                                             Map<String, List<String>> headers) {
         URI uri = URI.create(url);
         HttpRequest httpRequest = createNettyRequest(method, uri, body, headers);
@@ -98,7 +99,7 @@ public class NettyHttpClient {
         return nettyRequest;
     }
 
-    private CompletableFuture<FullHttpResponse> execute(URI uri, HttpRequest httpRequest) {
+    private CompletionStage<FullHttpResponse> execute(URI uri, HttpRequest httpRequest) {
         CompletableFuture<FullHttpResponse> responseFuture = new CompletableFuture<>();
         bootstrap.connect(uri.getHost(), getPort(uri))
             .addListener((ChannelFutureListener)future -> {

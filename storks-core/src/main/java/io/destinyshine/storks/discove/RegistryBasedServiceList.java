@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 
@@ -37,9 +37,9 @@ public class RegistryBasedServiceList implements ServiceInstanceList {
         if (watchedServiceKeys.contains(serviceKey)) {
             return serviceListCache.get(serviceKey);
         } else {
-            CompletableFuture<List<ServiceInstance>> serviceListFuture = serviceRegistry.discover(serviceKey);
             try {
-                List<ServiceInstance> serviceList = serviceListFuture.get();
+                CompletionStage<List<ServiceInstance>> serviceListFuture = serviceRegistry.discover(serviceKey);
+                List<ServiceInstance> serviceList = serviceListFuture.toCompletableFuture().get();
 
                 serviceListCache.put(serviceKey, serviceList);
 

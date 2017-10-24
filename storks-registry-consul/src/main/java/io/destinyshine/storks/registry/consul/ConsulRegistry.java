@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -150,8 +150,8 @@ public class ConsulRegistry implements ServiceRegistry {
     }
 
     @Override
-    public CompletableFuture<List<ServiceInstance>> discover(ServiceKey serviceKey) {
-        CompletableFuture<Optional<List<ServiceInstance>>> serviceListNew = discoverInternal(serviceKey, -1);
+    public CompletionStage<List<ServiceInstance>> discover(ServiceKey serviceKey) {
+        CompletionStage<Optional<List<ServiceInstance>>> serviceListNew = discoverInternal(serviceKey, -1);
         return serviceListNew.thenApply(servicesOpt -> servicesOpt.get());
     }
 
@@ -187,9 +187,9 @@ public class ConsulRegistry implements ServiceRegistry {
         );
     }
 
-    private CompletableFuture<Optional<List<ServiceInstance>>> discoverInternal(ServiceKey serviceKey,
+    private CompletionStage<Optional<List<ServiceInstance>>> discoverInternal(ServiceKey serviceKey,
                                                                                 long lastConsulIndexId) {
-        CompletableFuture<ConsulResponse<List<ConsulService>>> responseFuture;
+        CompletionStage<ConsulResponse<List<ConsulService>>> responseFuture;
         responseFuture = lookupConsulService(serviceKey, lastConsulIndexId);
         return responseFuture.thenApply(response -> {
             if (response == null) {
@@ -223,9 +223,9 @@ public class ConsulRegistry implements ServiceRegistry {
      * @param serviceKey
      * @return ConsulResponse or null
      */
-    private CompletableFuture<ConsulResponse<List<ConsulService>>> lookupConsulService(ServiceKey serviceKey,
+    private CompletionStage<ConsulResponse<List<ConsulService>>> lookupConsulService(ServiceKey serviceKey,
                                                                                        long lastConsulIndexId) {
-        CompletableFuture<ConsulResponse<List<ConsulService>>> response = client.lookupHealthService(
+        CompletionStage<ConsulResponse<List<ConsulService>>> response = client.lookupHealthService(
             serviceKey.toString(),
             lastConsulIndexId
         );

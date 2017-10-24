@@ -1,6 +1,6 @@
 package io.destinyshine.storks.core.consume.invoke;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.core.RequestMessage;
 import io.destinyshine.storks.core.ResponseMessage;
@@ -16,10 +16,10 @@ public class DefaultRemoteProcedureInvoker extends RemoteServiceAccessor
     implements RemoteProcedureInvoker, AutoCloseable {
 
     @Override
-    public ResponseMessage invoke(ConsumerDescriptor desc, RequestMessage requestMessage) throws Exception {
+    public CompletionStage<ResponseMessage> invoke(ConsumerDescriptor desc, RequestMessage requestMessage) throws Exception {
         ServiceReference refer = getServiceRefer(desc);
-        Future<ResponseMessage> responsePromise = refer.invoke(requestMessage);
-        return responsePromise.get();
+        CompletionStage<ResponseMessage> responsePromise = refer.invoke(requestMessage);
+        return responsePromise;
     }
 
     @Override

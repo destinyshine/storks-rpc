@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.http.NettyHttpClient;
 import io.destinyshine.storks.registry.consul.ConsulResponse;
@@ -50,7 +50,7 @@ public class RestConsulClient extends ConsulAccessor implements ConsulClient {
      * @param serviceId
      */
     @Override
-    public CompletableFuture<Void> checkPassService(String serviceId) {
+    public CompletionStage<Void> checkPassService(String serviceId) {
         String path = path("/agent/check/pass/service:" + serviceId);
         logger.info("checkPass, path={}, serviceId={}", path, serviceId);
         return httpClient.put(path, Unpooled.EMPTY_BUFFER)
@@ -63,7 +63,7 @@ public class RestConsulClient extends ConsulAccessor implements ConsulClient {
      * @param serviceId
      */
     @Override
-    public CompletableFuture<Void> checkFailService(String serviceId) {
+    public CompletionStage<Void> checkFailService(String serviceId) {
         String path = path("/agent/check/fail/service:" + serviceId);
         logger.info("checkFail, path={}, serviceId={}", path, serviceId);
         return httpClient.put(path, Unpooled.EMPTY_BUFFER)
@@ -77,7 +77,7 @@ public class RestConsulClient extends ConsulAccessor implements ConsulClient {
      * @return
      */
     @Override
-    public CompletableFuture<Void> registerService(ConsulService service) {
+    public CompletionStage<Void> registerService(ConsulService service) {
         String path = path("/agent/service/register");
         AgentService payload = toAgentService(service);
         ByteBuf byteBuf = Unpooled.wrappedBuffer(JsonGenerator.generate(payload).getBytes());
@@ -92,13 +92,13 @@ public class RestConsulClient extends ConsulAccessor implements ConsulClient {
      * @return
      */
     @Override
-    public CompletableFuture<Void> unregisterService(String serviceId) {
+    public CompletionStage<Void> unregisterService(String serviceId) {
         String path = path("/agent/service/deregister/" + serviceId);
         return httpClient.put(path, Unpooled.EMPTY_BUFFER).thenAccept(emptyConsumer());
     }
 
     @Override
-    public CompletableFuture<ConsulResponse<List<ConsulService>>> lookupHealthService(String serviceName,
+    public CompletionStage<ConsulResponse<List<ConsulService>>> lookupHealthService(String serviceName,
                                                                                       long lastConsulIndex) {
         String path = path("/health/service/" + serviceName + "?passing=true");
         return httpClient.get(path)

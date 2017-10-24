@@ -1,6 +1,8 @@
 package io.destinyshine.storks.support.cnosume;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import io.destinyshine.storks.core.RequestMessage;
@@ -19,7 +21,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.util.concurrent.Promise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,8 @@ public class NettyNioServiceReference implements AutoCloseable, ServiceReference
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private ConcurrentLinkedQueue<Promise<ResponseMessage>> responsePromises = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<CompletableFuture<ResponseMessage>>
+        responsePromises = new ConcurrentLinkedQueue<CompletableFuture<ResponseMessage>>();
 
     private final String remoteHost;
     private final int remotePort;
@@ -69,10 +71,11 @@ public class NettyNioServiceReference implements AutoCloseable, ServiceReference
                             @Override
                             protected void channelRead0(ChannelHandlerContext ctx, ResponseMessage msg)
                                 throws Exception {
-                                Promise<ResponseMessage> promise;
+                                CompletableFuture<ResponseMessage> promise;
                                 if ((promise = responsePromises.poll()) != null) {
-                                    promise.setSuccess(msg);
+                                    promise.complete(msg);
                                 } else {
+                                    promise.completeExceptionally(new IllegalStateException("remote server closed!"));
                                     logger.error("remote server closed!");
                                 }
                             }
@@ -96,8 +99,8 @@ public class NettyNioServiceReference implements AutoCloseable, ServiceReference
     }
 
     @Override
-    public Promise<ResponseMessage> invoke(RequestMessage requestMessage) {
-        Promise<ResponseMessage> promise = this.channel.eventLoop().newPromise();
+    public CompletionStage<ResponseMessage> invoke(RequestMessage requestMessage) {
+        CompletableFuture<ResponseMessage> promise = new CompletableFuture<>();
         this.responsePromises.add(promise);
         this.channel.writeAndFlush(requestMessage);
         return promise;

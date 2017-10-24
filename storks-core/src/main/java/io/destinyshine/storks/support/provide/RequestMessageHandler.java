@@ -1,7 +1,7 @@
 package io.destinyshine.storks.support.provide;
 
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.core.RequestMessage;
 import io.destinyshine.storks.core.ResponseMessage;
@@ -31,7 +31,7 @@ public class RequestMessageHandler extends SimpleChannelInboundHandler<RequestMe
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RequestMessage msg) throws Exception {
         ServiceProvider<?> provider = serviceProviders.get(ServiceKey.of(msg.getServiceInterface(), msg.getServiceVersion()));
-        CompletableFuture<ResponseMessage> responseMessage = procedureExecutor.execute(msg, provider);
+        CompletionStage<ResponseMessage> responseMessage = procedureExecutor.execute(msg, provider);
         responseMessage.thenAccept(ctx::writeAndFlush);
     }
 }

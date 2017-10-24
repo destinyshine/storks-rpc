@@ -1,6 +1,6 @@
 package io.destinyshine.storks.core.provide;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.core.RequestMessage;
 import io.destinyshine.storks.core.ResponseMessage;
@@ -16,6 +16,6 @@ public interface ServiceProcedureExecutor {
      * @param serviceProvider witch serviceProvider will invoke
      * @return CompletableFuture<ResponseMessage>
      */
-    CompletableFuture<ResponseMessage> execute(RequestMessage request,
-                                               ServiceProvider<?> serviceProvider);
+    CompletionStage<ResponseMessage> execute(RequestMessage request,
+                                             ServiceProvider<?> serviceProvider);
 }

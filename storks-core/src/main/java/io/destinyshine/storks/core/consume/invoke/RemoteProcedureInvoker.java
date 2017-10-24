@@ -1,5 +1,7 @@
 package io.destinyshine.storks.core.consume.invoke;
 
+import java.util.concurrent.CompletionStage;
+
 import io.destinyshine.storks.core.RequestMessage;
 import io.destinyshine.storks.core.ResponseMessage;
 import io.destinyshine.storks.core.consume.ConsumerDescriptor;
@@ -20,6 +22,6 @@ public interface RemoteProcedureInvoker {
      * @return
      * @throws Exception
      */
-    ResponseMessage invoke(ConsumerDescriptor desc, RequestMessage requestMessage)
+    CompletionStage<ResponseMessage> invoke(ConsumerDescriptor desc, RequestMessage requestMessage)
         throws Exception;
 }

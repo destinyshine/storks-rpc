@@ -1,6 +1,6 @@
 package io.destinyshine.storks.core.consume.refer;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.core.RequestMessage;
 import io.destinyshine.storks.core.ResponseMessage;
@@ -29,6 +29,6 @@ public interface ServiceReference extends AutoCloseable {
      * @param requestMessage
      * @return
      */
-    Future<ResponseMessage> invoke(RequestMessage requestMessage);
+    CompletionStage<ResponseMessage> invoke(RequestMessage requestMessage);
 
 }
