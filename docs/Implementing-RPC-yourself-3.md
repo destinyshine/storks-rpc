@@ -126,7 +126,7 @@ consul的java客户端有consul-api和consul-client两种，本质上都是对re
 
 #### 组件和领域层次的对应关系
 同一个概念在不同的层次深度，有不同的表述形式，对于一个服务，在应用程序的不同领域层次里有不同的类描述，其关系如下：
-![服务表述类和层次对应关系](images/component-and-service-layer.png)
+![服务表述类和层次对应关系](https://raw.githubusercontent.com/destinyshine/storks-rpc/master/docs/images/compoent-cs-overview-layer.png)
 
 #### 重要类描述
 
