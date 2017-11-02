@@ -1,9 +1,9 @@
 #自己动手实现RPC框架(2)－服务调用
 ## 索引
+__replacing__
 
-* [自己动手实现RPC框架(1)－发布服务](https://www.atatech.org/articles/89606)
-* [自己动手实现RPC框架(2)－服务调用](https://www.atatech.org/articles/89904)
-* 自己动手实现RPC框架(3)－服务注册&服务发现 `待续`
+>代码库<br/>
+>[https://github.com/destinyshine/storks-rpc.git](https://github.com/destinyshine/storks-rpc.git)
 
 ## 远程服务调用
 在上一步，我们实现了一个服务发布程序，这一步我们要进行客户端调用。
