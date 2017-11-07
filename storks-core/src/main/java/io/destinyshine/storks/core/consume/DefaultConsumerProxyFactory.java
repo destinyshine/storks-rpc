@@ -59,13 +59,8 @@ public class DefaultConsumerProxyFactory implements ConsumerProxyFactory {
             requestMessage.setParameters(args);
             requestMessage.setServiceInterface(desc.getServiceInterface().getName());
             requestMessage.setServiceVersion(desc.getServiceVersion());
-            CompletionStage<ResponseMessage> responsePromise = remoteProcedureInvoker.invoke(requestMessage, desc);
-            if (InvocationContext.getContext().isAsyncMode()) {
-                CompletableFuture<Object> a = responsePromise.thenApply(resp -> resp.getReturnValue()).toCompletableFuture();
-                  InvocationContext.getContext().pushPromise(a);
-                  return null;
-            }
-            return responsePromise.toCompletableFuture().get().getReturnValue();
+            Object returnValue = remoteProcedureInvoker.invoke(requestMessage, desc);
+            return returnValue;
         }
     }
 }
