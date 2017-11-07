@@ -1,6 +1,7 @@
 package io.destinyshine.storks.core.consume;
 
 import io.destinyshine.storks.core.ServiceInfoDescriptor;
+import lombok.Getter;
 
 /**
  * 消费者描述信息
@@ -10,6 +11,7 @@ import io.destinyshine.storks.core.ServiceInfoDescriptor;
  *
  * @author liujianyu
  */
+@Getter
 public class ConsumerDescriptor<T> extends ServiceInfoDescriptor {
 
     public static final int DEFAULT_CONNECTIONS_NUM = 1;
@@ -40,19 +42,4 @@ public class ConsumerDescriptor<T> extends ServiceInfoDescriptor {
         this.connectionsNum = connectionsNum;
     }
 
-    public String getRemoteHost() {
-        return remoteHost;
-    }
-
-    public int getRemotePort() {
-        return remotePort;
-    }
-
-    public boolean isDirect() {
-        return direct;
-    }
-
-    public int getConnectionsNum() {
-        return connectionsNum;
-    }
 }

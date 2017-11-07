@@ -22,6 +22,6 @@ public interface RemoteProcedureInvoker {
      * @return
      * @throws Exception
      */
-    CompletionStage<ResponseMessage> invoke(ConsumerDescriptor desc, RequestMessage requestMessage)
+    Object invoke(RequestMessage requestMessage, ConsumerDescriptor<?> desc)
         throws Exception;
 }

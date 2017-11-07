@@ -8,6 +8,7 @@ import java.util.concurrent.CompletionStage;
 
 import io.destinyshine.storks.core.RequestMessage;
 import io.destinyshine.storks.core.ResponseMessage;
+import io.destinyshine.storks.core.consume.invoke.InvocationContext;
 import io.destinyshine.storks.core.consume.invoke.RemoteProcedureInvoker;
 
 /**
@@ -58,10 +59,10 @@ public class DefaultConsumerProxyFactory implements ConsumerProxyFactory {
             requestMessage.setParameters(args);
             requestMessage.setServiceInterface(desc.getServiceInterface().getName());
             requestMessage.setServiceVersion(desc.getServiceVersion());
-            CompletionStage<ResponseMessage> responsePromise = remoteProcedureInvoker.invoke(desc, requestMessage);
-            if (InvokeContext.getInvokeContext().isAsyncMode()) {
+            CompletionStage<ResponseMessage> responsePromise = remoteProcedureInvoker.invoke(requestMessage, desc);
+            if (InvocationContext.getContext().isAsyncMode()) {
                 CompletableFuture<Object> a = responsePromise.thenApply(resp -> resp.getReturnValue()).toCompletableFuture();
-                  InvokeContext.getInvokeContext().pushPromise(a);
+                  InvocationContext.getContext().pushPromise(a);
                   return null;
             }
             return responsePromise.toCompletableFuture().get().getReturnValue();
