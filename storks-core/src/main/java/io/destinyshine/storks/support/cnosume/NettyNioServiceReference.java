@@ -31,6 +31,8 @@ public class NettyNioServiceReference implements AutoCloseable, ServiceReference
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    private final Object channelWriteLock = new Object();
+
     private ConcurrentLinkedQueue<CompletableFuture<ResponseMessage>>
         responsePromises = new ConcurrentLinkedQueue<CompletableFuture<ResponseMessage>>();
 
@@ -40,6 +42,7 @@ public class NettyNioServiceReference implements AutoCloseable, ServiceReference
     private Channel channel;
 
     private long connectedTime;
+
 
     public NettyNioServiceReference(String remoteHost, int remotePort) {
         this.remoteHost = remoteHost;
@@ -99,10 +102,12 @@ public class NettyNioServiceReference implements AutoCloseable, ServiceReference
     }
 
     @Override
-    public CompletionStage<ResponseMessage> invoke(RequestMessage requestMessage) {
+    public CompletionStage<ResponseMessage>  invoke(RequestMessage requestMessage) {
         CompletableFuture<ResponseMessage> promise = new CompletableFuture<>();
-        this.responsePromises.add(promise);
-        this.channel.writeAndFlush(requestMessage);
+        synchronized (channelWriteLock) {
+            this.responsePromises.add(promise);
+            this.channel.writeAndFlush(requestMessage);
+        }
         return promise;
     }
 
