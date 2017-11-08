@@ -9,6 +9,7 @@ import io.destinyshine.storks.core.consume.ConsumerProxyFactory;
 import io.destinyshine.storks.core.consume.DefaultConsumerProxyFactory;
 import io.destinyshine.storks.core.consume.RandomLoadBalanceStrategy;
 import io.destinyshine.storks.core.consume.invoke.DefaultRemoteProcedureInvoker;
+import io.destinyshine.storks.core.consume.invoke.InvocationContext;
 import io.destinyshine.storks.discove.DynamicListServiceInstanceSelector;
 import io.destinyshine.storks.discove.RegistryBasedServiceList;
 import io.destinyshine.storks.registry.consul.ConsulRegistry;
@@ -51,15 +52,14 @@ public class AsyncClientMain {
         for (int i = 0; i < 100; i++) {
             int finalI = i;
             executorService.submit(() -> {
-                String input = null;
-                String result = null;
                 try {
-                    input = "tom-" + Thread.currentThread().getName() + "," + finalI;
-                    result = helloServiceConsumer.hello(input);
+                    String input = "tom-" + Thread.currentThread().getName() + "," + finalI;
+                    InvocationContext.forAsync(() -> helloServiceConsumer.hello(input))
+                        .thenAccept(result -> logger.info("input={}, get result: {}", input, result));
                 } catch (Exception e) {
                     logger.error(e.getMessage(), e);
                 }
-                logger.info("input={}, get result: {}", input, result);
+                ;
             });
         }
 
