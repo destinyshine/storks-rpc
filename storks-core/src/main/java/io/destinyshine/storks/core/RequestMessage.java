@@ -23,5 +23,6 @@ public class RequestMessage {
     private String methodName;
     private String[] parameterTypes;
     private Object[] parameters;
+    private Class<?> returnType;
 
 }

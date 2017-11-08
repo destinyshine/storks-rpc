@@ -3,6 +3,7 @@ package io.destinyshine.storks.core.provide;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutorService;
@@ -12,8 +13,10 @@ import java.util.concurrent.TimeUnit;
 
 import io.destinyshine.storks.core.RequestMessage;
 import io.destinyshine.storks.core.ResponseMessage;
+import io.destinyshine.storks.lang.PrimitiveTypes;
 import io.destinyshine.storks.utils.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * @author liujianyu
@@ -52,7 +55,9 @@ public class ThreadPoolServiceProcedureExecutor implements ServiceProcedureExecu
         Class<?>[] parameterClasses = new Class<?>[request.getParameterTypes().length];
         for (int i = 0; i < request.getParameterTypes().length; i++) {
             try {
-                parameterClasses[i] = Class.forName(request.getParameterTypes()[i]);
+                String paramTypeName = request.getParameterTypes()[i];
+                Optional<Class<?>> primitiveType = PrimitiveTypes.getPrimitiveType(paramTypeName);
+                parameterClasses[i] = primitiveType.isPresent() ? primitiveType.get() : Class.forName(paramTypeName);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }

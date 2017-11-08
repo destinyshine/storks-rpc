@@ -59,6 +59,7 @@ public class DefaultConsumerProxyFactory implements ConsumerProxyFactory {
             requestMessage.setParameters(args);
             requestMessage.setServiceInterface(desc.getServiceInterface().getName());
             requestMessage.setServiceVersion(desc.getServiceVersion());
+            requestMessage.setReturnType(method.getReturnType());
             Object returnValue = remoteProcedureInvoker.invoke(requestMessage, desc);
             return returnValue;
         }
