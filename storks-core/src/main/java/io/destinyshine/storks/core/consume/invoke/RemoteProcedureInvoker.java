@@ -1,9 +1,6 @@
 package io.destinyshine.storks.core.consume.invoke;
 
-import java.util.concurrent.CompletionStage;
-
 import io.destinyshine.storks.core.RequestMessage;
-import io.destinyshine.storks.core.ResponseMessage;
 import io.destinyshine.storks.core.consume.ConsumerDescriptor;
 
 /**

@@ -22,7 +22,7 @@ public abstract class PrimitiveTypes {
      * @param name
      * @return
      */
-    public static Class<?> getPrimitiveType0(String name) {
+    private static Class<?> getPrimitiveType0(String name) {
         switch (name) {
             case BOOLEAN_NAME:
                 return Boolean.TYPE;

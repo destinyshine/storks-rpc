@@ -57,9 +57,9 @@ public class AsyncClientMain {
                 try {
                     int a = random.nextInt(Integer.MAX_VALUE / 2);
                     int b = random.nextInt(Integer.MAX_VALUE / 2);
-                    InvocationContext.forAsync(() -> computeServiceConsumer.sum(a, b))
+                    InvocationContext.doAsyncInvoke(() -> computeServiceConsumer.add(a, b))
                         .thenApply(result -> (int)result)
-                        .thenAccept(sum -> logger.info("input(a={},b={}), returned sum={}, isRight:{}", a, b, sum, a + b == sum));
+                        .thenAccept(sum -> logger.info("remote compute: {} + {} = {}, right:{}", a, b, sum, a + b == sum));
                 } catch (Exception e) {
                     logger.error(e.getMessage(), e);
                 }

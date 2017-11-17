@@ -1,6 +1,6 @@
 package io.destinyshine.storks.core.consume.invoke;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -10,11 +10,11 @@ public class InvocationContext {
 
     private static final ThreadLocal<InvocationContext> invokeContextLocal = ThreadLocal.withInitial(InvocationContext::new);
 
-    private ConcurrentLinkedQueue<CompletableFuture<?>> promises = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<CompletionStage<?>> promises = new ConcurrentLinkedQueue<>();
 
     private boolean asyncResultMode = false;
 
-    public static <T> CompletableFuture<T> forAsync(Runnable invocation) {
+    public static <T> CompletionStage<T> doAsyncInvoke(Runnable invocation) {
         InvocationContext context = invokeContextLocal.get();
         context.switchAsyncMode(true);
         invocation.run();
@@ -30,12 +30,12 @@ public class InvocationContext {
         this.asyncResultMode = asyncResultMode;
     }
 
-     void pushPromise(CompletableFuture promise) {
+    void pushPromise(CompletionStage promise) {
         promises.add(promise);
     }
 
-    <T> CompletableFuture<T> popPromise() {
-        return (CompletableFuture<T>)promises.poll();
+    <T> CompletionStage<T> popPromise() {
+        return (CompletionStage<T>)promises.poll();
     }
 
     public boolean isAsyncResultMode() {

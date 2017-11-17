@@ -23,9 +23,7 @@ public class DefaultRemoteProcedureInvoker extends RemoteServiceAccessor
         CompletionStage<ResponseMessage> responsePromise = refer.invoke(requestMessage);
 
         if (InvocationContext.getContext().isAsyncResultMode()) {
-            CompletableFuture<Object> promise = responsePromise
-                .thenApply(resp -> resp.getReturnValue())
-                .toCompletableFuture();
+            CompletionStage<Object> promise = responsePromise.thenApply(resp -> resp.getReturnValue());
             InvocationContext.getContext().pushPromise(promise);
             Class<?> returnType = requestMessage.getReturnType();
             if (returnType.isPrimitive()) {
