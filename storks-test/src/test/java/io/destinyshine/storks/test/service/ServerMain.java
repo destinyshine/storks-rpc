@@ -6,11 +6,11 @@ import io.destinyshine.storks.core.provide.DefaultProviderManager;
 import io.destinyshine.storks.core.provide.ProviderDescriptor;
 import io.destinyshine.storks.registry.consul.ConsulRegistry;
 import io.destinyshine.storks.registry.consul.client.rest.RestConsulClient;
+import io.destinyshine.storks.support.provide.NettyNioServiceExporter;
 import io.destinyshine.storks.test.service.api.ComputeService;
 import io.destinyshine.storks.test.service.api.HelloService;
 import io.destinyshine.storks.test.service.impl.ComputeServiceImpl;
 import io.destinyshine.storks.test.service.impl.HelloServiceImpl;
-import io.destinyshine.storks.support.provide.NettyNioServiceExporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

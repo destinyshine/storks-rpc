@@ -13,8 +13,8 @@ import io.destinyshine.storks.discove.DynamicListServiceInstanceSelector;
 import io.destinyshine.storks.discove.RegistryBasedServiceList;
 import io.destinyshine.storks.registry.consul.ConsulRegistry;
 import io.destinyshine.storks.registry.consul.client.rest.RestConsulClient;
-import io.destinyshine.storks.test.service.api.HelloService;
 import io.destinyshine.storks.support.cnosume.NettyNioServiceReferenceSupplier;
+import io.destinyshine.storks.test.service.api.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
