@@ -11,6 +11,7 @@
         <module>storks-core</module>
         <module>storks-registry-consul</module>
         <module>storks-test</module>
+        <module>storks-spring-boot-starter</module>
     </modules>
     <packaging>pom</packaging>
 

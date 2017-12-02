@@ -3,7 +3,7 @@ package io.destinyshine.storks.core;
 /**
  * Created by liujianyu.ljy on 17/8/29.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/08/29
  */
 public class ServiceNotFoundException extends RuntimeException {

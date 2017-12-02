@@ -7,7 +7,7 @@ import io.destinyshine.storks.core.ServiceKey;
 /**
  * Created by liujianyu.ljy on 17/9/10.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/09/10
  */
 public class Subscription<T> {

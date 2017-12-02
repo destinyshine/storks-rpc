@@ -1,4 +1,4 @@
-package io.destinyshine.storks.sample.service;
+package io.destinyshine.storks.test.service;
 
 import io.destinyshine.storks.core.RegistryBasedExporter;
 import io.destinyshine.storks.core.StorksApplication;
@@ -6,10 +6,10 @@ import io.destinyshine.storks.core.provide.DefaultProviderManager;
 import io.destinyshine.storks.core.provide.ProviderDescriptor;
 import io.destinyshine.storks.registry.consul.ConsulRegistry;
 import io.destinyshine.storks.registry.consul.client.rest.RestConsulClient;
-import io.destinyshine.storks.sample.service.api.ComputeService;
-import io.destinyshine.storks.sample.service.api.HelloService;
-import io.destinyshine.storks.sample.service.impl.ComputeServiceImpl;
-import io.destinyshine.storks.sample.service.impl.HelloServiceImpl;
+import io.destinyshine.storks.test.service.api.ComputeService;
+import io.destinyshine.storks.test.service.api.HelloService;
+import io.destinyshine.storks.test.service.impl.ComputeServiceImpl;
+import io.destinyshine.storks.test.service.impl.HelloServiceImpl;
 import io.destinyshine.storks.support.provide.NettyNioServiceExporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

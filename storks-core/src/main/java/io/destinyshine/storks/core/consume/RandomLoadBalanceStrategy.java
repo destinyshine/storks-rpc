@@ -9,7 +9,7 @@ import io.destinyshine.storks.discove.LoadBalanceStrategy;
 /**
  * Created by liujianyu.ljy on 17/9/2.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/09/02
  */
 public class RandomLoadBalanceStrategy implements LoadBalanceStrategy {

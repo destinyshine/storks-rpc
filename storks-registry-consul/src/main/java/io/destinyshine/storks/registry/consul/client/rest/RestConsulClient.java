@@ -32,7 +32,7 @@ import static io.destinyshine.storks.utils.functions.Functions.emptyConsumer;
  * X-Consul-Knownleader:true
  * X-Consul-Lastcontact
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/09/04
  */
 @Slf4j

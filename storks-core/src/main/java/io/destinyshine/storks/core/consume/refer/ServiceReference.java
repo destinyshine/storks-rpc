@@ -11,7 +11,7 @@ import io.destinyshine.storks.core.ResponseMessage;
  * 指向一个远程服务端，此类是实际上的Client
  * </p>
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/08/27
  */
 public interface ServiceReference extends AutoCloseable {

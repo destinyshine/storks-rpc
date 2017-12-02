@@ -47,7 +47,7 @@ public class ThreadPoolServiceProcedureExecutor implements ServiceProcedureExecu
         return completableFuture;
     }
 
-    public void doExecuteInternal(RequestMessage request,
+    private void doExecuteInternal(RequestMessage request,
                                   ServiceProvider<?> serviceProvider,
                                   CompletableFuture<ResponseMessage> completableFuture) {
 

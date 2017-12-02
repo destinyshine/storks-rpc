@@ -1,4 +1,4 @@
-package jsonparse;
+package io.destinyshine.storks.test.jsonparse;
 
 import java.io.File;
 import java.io.IOException;

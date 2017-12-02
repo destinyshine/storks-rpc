@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Created by liujianyu.ljy on 17/9/10.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/09/10
  */
 @Slf4j

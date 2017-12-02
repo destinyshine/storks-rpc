@@ -1,4 +1,4 @@
-package io.destinyshine.storks.sample.service.api;
+package io.destinyshine.storks.test.service.api;
 
 /**
  * @author destinyliu

@@ -9,7 +9,7 @@ import io.destinyshine.storks.core.consume.Subscription;
 /**
  * Created by liujianyu.ljy on 17/8/18.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/08/18
  */
 public interface ServiceRegistry extends AutoCloseable {

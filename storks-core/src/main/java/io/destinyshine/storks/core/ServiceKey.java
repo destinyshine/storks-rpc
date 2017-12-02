@@ -8,7 +8,7 @@ import io.destinyshine.storks.core.provide.ProviderDescriptor;
 /**
  * Created by liujianyu.ljy on 17/8/19.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/08/19
  */
 public class ServiceKey {

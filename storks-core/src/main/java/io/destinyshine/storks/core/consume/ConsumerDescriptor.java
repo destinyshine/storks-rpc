@@ -42,4 +42,19 @@ public class ConsumerDescriptor<T> extends ServiceInfoDescriptor {
         this.connectionsNum = connectionsNum;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof ConsumerDescriptor) {
+            ConsumerDescriptor other = (ConsumerDescriptor)obj;
+            return other.getServiceInterface().equals(this.serviceInterface)
+                && other.getServiceVersion().equals(other.getServiceVersion());
+        }
+        return false;
+    }
 }

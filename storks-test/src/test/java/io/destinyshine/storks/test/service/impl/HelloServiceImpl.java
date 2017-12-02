@@ -1,12 +1,16 @@
-package io.destinyshine.storks.sample.service.impl;
+package io.destinyshine.storks.test.service.impl;
 
-import io.destinyshine.storks.sample.service.api.HelloService;
+import io.destinyshine.storks.test.service.api.HelloService;
+import io.destinyshine.storks.spring.boot.StorksProvider;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
  * @author destinyliu
  */
 @Slf4j
+@StorksProvider
+@Service
 public class HelloServiceImpl implements HelloService {
 
     @Override

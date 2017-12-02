@@ -42,7 +42,7 @@ import ...
 /**
  * a base class for RemoteProcedureInvoker
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/09/07
  */
 @Slf4j

@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Created by liujianyu.ljy on 17/8/18.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/08/18
  */
 @Slf4j

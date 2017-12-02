@@ -12,7 +12,7 @@ import io.protostuff.runtime.RuntimeSchema;
 /**
  * Created by liujianyu.ljy on 17/8/10.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/08/10
  */
 public class ProtostuffDecoder<T> extends ByteToMessageDecoder {

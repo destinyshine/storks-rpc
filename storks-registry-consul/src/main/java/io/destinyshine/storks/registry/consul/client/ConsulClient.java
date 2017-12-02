@@ -9,7 +9,7 @@ import io.destinyshine.storks.registry.consul.ConsulService;
 /**
  * Created by liujianyu.ljy on 17/9/13.
  *
- * @author liujianyu.ljy
+ * @author liujianyu
  * @date 2017/09/13
  */
 public interface ConsulClient {
