@@ -9,8 +9,8 @@ import io.destinyshine.storks.core.consume.ConsumerProxyFactory;
 import io.destinyshine.storks.core.consume.DefaultConsumerProxyFactory;
 import io.destinyshine.storks.core.consume.DirectServiceInstanceSelector;
 import io.destinyshine.storks.core.consume.invoke.DefaultRemoteProcedureInvoker;
-import io.destinyshine.storks.test.service.api.HelloService;
 import io.destinyshine.storks.support.cnosume.NettyNioServiceReferenceSupplier;
+import io.destinyshine.storks.test.service.api.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

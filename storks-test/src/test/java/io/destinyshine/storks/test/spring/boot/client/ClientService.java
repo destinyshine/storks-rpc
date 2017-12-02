@@ -5,8 +5,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.destinyshine.storks.core.consume.invoke.InvocationContext;
-import io.destinyshine.storks.test.service.api.ComputeService;
 import io.destinyshine.storks.spring.boot.StorksConsumer;
+import io.destinyshine.storks.test.service.api.ComputeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
